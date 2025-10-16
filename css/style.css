@@ -1,0 +1,87 @@
+:root {
+    --h1: 3rem;        /* 48px */
+    --h2: 2.25rem;     /* 36px */
+    --h3: 1.75rem;     /* 28px */
+    --h4: 1.5rem;      /* 24px */
+    --body: 1rem;      /* 16px */
+    --small: 0.875rem; /* 14px */
+    --caption: 0.75rem;/* 12px */
+
+    --text-color: #ffffff; /* Color del texto */
+    --bg-color: #000000;   /* Fondo oscuro */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Geist Sans", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+    padding: 1rem;
+}
+
+.main-content {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.96);
+    animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer.credits {
+    text-align: center;
+    font-size: var(--small);
+    opacity: 0.7;
+    padding: 0.75rem 1rem;
+}
+
+.logo {
+    width: 175px;
+    height: auto;
+    transition: transform 0.7s ease;
+    transform-style: preserve-3d;
+}
+
+.logo:hover {
+    transform: rotate3d(1, 1, 0, 27deg);
+}
+
+.org-name {
+    font-size: var(--h1);
+    font-weight: 600;
+}
+
+.org-name a{
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    transition: 0.7s ease, color 1s ease;
+    cursor: pointer;
+}
+
+.org-name a:hover {
+    transform: scale(1.03);
+    color: #a1a1a1;
+}
