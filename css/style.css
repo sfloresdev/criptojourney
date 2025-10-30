@@ -26,6 +26,26 @@ html, body {
     flex-direction: column;
 }
 
+header a{
+    text-decoration: none;
+    color: white;
+
+}
+
+.menu-desplegable{
+    position: relative;
+    display: inline-block;
+}
+
+#menu-btn{
+    width: 50px;
+    cursor:pointer;
+}
+
+.menu-desplegable{
+    display: none;
+}
+
 main {
     flex: 1;
     display: flex;
@@ -57,14 +77,14 @@ footer.credits {
     padding: 0.75rem 1rem;
 }
 
-.logo {
+#logo_header {
     width: 175px;
     height: auto;
     transition: transform 0.7s ease;
     transform-style: preserve-3d;
 }
 
-.logo:hover {
+#logo_header:hover {
     transform: rotate3d(1, 1, 0, 27deg);
 }
 
