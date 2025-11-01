@@ -20,21 +20,21 @@
 
 @media (min-width: 768px){
 	.container{
-		width: min(90%, 1200px);
+		width: min(95%, 1300px);
 		padding-inline: 2rem;
 	}
 }
 
 @media (min-width: 1200px){
 	.container{
-		width: min(88%, 1300px);
+		width: min(92%, 1400px);
 		padding-inline: 3rem;
 	}
 }
 
 @media (min-width: 1600px){
 	.container{
-		width: min(88%, 1400px);;
+		width: min(90%, 1600px);;
 	}
 }
 
@@ -87,13 +87,12 @@ main {
 }
 
 .articles article {
-	/*width: 80%;
-	max-width: 800px;*/
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	padding: 1.5rem;
-	border-radius: 12px;	
+	border-radius: 12px;
+	width: 100%;
 }
 /*Titulos centrados*/
 .articles article h2,
