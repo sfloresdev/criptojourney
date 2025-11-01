@@ -1,5 +1,4 @@
 # Proyecto historia de la criptografia
-=======
 # 🔐 CriptoJourney
 
 **Un viaje interactivo por la historia de la criptografía**
