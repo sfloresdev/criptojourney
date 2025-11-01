@@ -52,19 +52,32 @@ html, body {
     flex-direction: column;
 }
 
+
+
+
 header {
   width: 100%;
-  display: flex;                 
-  justify-content: space-between;
-  align-items: center;           
-  padding: 0.75rem 1.5rem;       
-  position: fixed;               
+  display: flex;
+  justify-content: flex-start; /* no importa demasiado, ahora lo controla header-container */
+  align-items: center;
+  padding: 0.75rem 0; /* el espacio arriba y abajo del header */
+  position: fixed;
   top: 0;
   left: 0;
-  height: 100px;
-  z-index: 1000;                 
+  height: 60px;
+  background-color: #000000;
+  z-index: 1000;
 }
 
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1520px;
+  margin-inline: auto;
+  padding: 0 1.5rem;
+}
 
 #logo_header {
     z-index: 10000; 
@@ -84,20 +97,18 @@ header {
 
 .menu-header{
     opacity: 0;
-    transform: translateX(70px);
+    transform: translateX(55px);
     pointer-events: none;
     position: absolute;
-    top:0;
-    right: 60px;
+    top: -15px;
+    right: 80px;
     white-space: nowrap;
     background-color: rgb(0, 0, 0);
     padding: 7px;
-    border: 2px solid rgb(12, 94, 176);
-    border-radius: 10px;
-    box-shadow:  0 10px 12px rgba(113, 111, 111, 0.429);
     z-index: 100; 
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
 .menu-header.active{
     opacity: 1;
     transform: translateX(0);
@@ -118,6 +129,8 @@ header {
 }
 
 
+
+
 main {
     flex: 1;
     display: flex;
@@ -136,10 +149,18 @@ main {
     animation: fadeIn 1.2s ease forwards;
 }
 
-.hero{
-    position: relative;
-    top: 100px;
+
+.hero-container {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;     
+  text-align: center;      
+  width: 100%;
+  max-width: 1520px;       
+  margin-inline: auto;     
+  padding: 2rem 1.5rem;    
 }
+
 .hero-text { 
     font-size: 40px;
 }
@@ -153,6 +174,7 @@ main {
     width: 100%;
     margin-top: 10rem;
 }
+
 .himage{
     width: 200px;
     height: auto;
@@ -160,9 +182,17 @@ main {
     transition: transform 0.4s ease;
 }
 
+.hero-images #imagen-alan, #imagen-diffie{
+    position: relative;
+    top: 80px;
+}
+
 .himage:hover{
     transform: scale(1.05);
 }
+
+
+
 
 @keyframes fadeIn {
     to {
