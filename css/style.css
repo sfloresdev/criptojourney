@@ -1,44 +1,5 @@
 @import url("components.css");
 
-@font-face {
-  font-family: "Geist Sans";
-  src: url("../assets/fonts/Geist-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Geist Sans";
-  src: url("../assets/fonts/Geist-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Geist Sans";
-  src: url("../assets/fonts/Geist-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Geist Sans";
-  src: url("../assets/fonts/Geist-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Geist Sans";
-  src: url("../assets/fonts/Geist-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
 
 :root {
     --h1: 3rem;
