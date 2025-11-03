@@ -1,3 +1,5 @@
+@import url("components.css");
+
 :root {
     --h1: 3rem;
     /* 48px */
@@ -147,7 +149,8 @@ header {
 }
 
 .menu-header a:hover {
-    background-color: #4e86be84;
+    /*background-color: #4e86be84;*/
+    background-color: #0072f5;
 }
 
 main {
@@ -384,6 +387,10 @@ main {
     max-width: var(--container-width);
     margin-inline: auto;
     padding-inline: 1.5rem;
+    grid-template-areas:
+        "proyecto recursos contacto"
+        "estado autores contador";
+    align-items: start;
 }
 
 @media (min-width: 768px) {
@@ -438,12 +445,111 @@ main {
     color: #fff;
 }
 
+.footer-status,
+.footer-authors,
+.footer-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(30, 30, 30, 0.1);
+    font-size: calc(var(--body) * 0.9);
+    color: #bbb;
+
+    text-align: left;
+}
+
+.status-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    top: 0;
+    background-color: currentColor;
+    /* animacion latido */
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.status-indicator.active {color: #4ade80;} /* status: ok*/
+.status-indicator.maintenance {color: #facc15;} /* status: maintenance*/
+.status-indicator.offline {color: #ef4444;} /* status: offline*/
+
+/* Pulso suave del mismo color, el punto central no se desvanece */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 currentColor;}
+    50% { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.1);} /* pulso tenue y transparente */ 
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);}
+}
+
+.status-text {
+    font-weight: 500;
+}
+
+.footer-authors {
+    grid-area: autores;
+}
+
+.footer-authors a {
+    color: #888888;
+    text-decoration: none;
+}
+
+.footer-authors a:hover {
+    color: #fff;
+}
+
+.footer-stats {
+    grid-area: contador;
+    text-align: left;
+}
+
+.footer-stats .stats-icon {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.footer-stats .stats-count {
+    font-weight: 600;
+    color: #fff;
+}
+
+.footer-stats .stats-label {
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+/* == ASIGNACION DE AREAS A LAS COLUMNAS == */
+.footer-column.proyecto { grid-area: proyecto; }
+.footer-column.recursos { grid-area: recursos; }
+.footer-column.contacto { grid-area: contacto; }
+.footer-status { grid-area: estado; }
+.footer-authors { grid-area: autores; }
+.footer-stats { grid-area: contador; }
+
 .footer-bottom {
-    margin-top: 2.5rem;
+    margin-top: 3rem;
     padding-top: 1rem;
     text-align: center;
     opacity: 0.7;
     font-size: var(--small);
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-areas:
+            "proyecto"
+            "estado"
+            "recursos"
+            "autores"
+            "contacto"
+            "contador";
+    }
 }
 
 #logo_header {
