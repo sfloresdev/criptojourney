@@ -83,3 +83,52 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* == FONDO ANIMADO (GRID 3D) == */
+.hero-background {
+  z-index: 0; /* fondo mas abajo que el resto */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  perspective: 1000px;
+}
+
+.grid-overlay {
+  z-index: 2;
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(0, 114, 245, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 114, 245, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px, 50px 50px, 100px 100px, 100px 100px;
+  animation: gridMove 24s linear infinite;
+  transform: rotateX(60deg) translateZ(60px);
+  transform-origin: center;
+  box-shadow: inset -1px -1px 0 rgba(255, 255, 255, 0.03);
+  mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.9) 30%,
+      rgba(0, 0, 0, 0.9) 70%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.9) 30%,
+      rgba(0, 0, 0, 0.9) 70%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+}
+
+@keyframes gridMove {
+  0% {
+    transform: rotateX(60deg) translateZ(80px) translateY(-30px);
+  }
+  100% {
+    transform: rotateX(60deg) translateZ(80px) translateY(20px);
+  }
+}

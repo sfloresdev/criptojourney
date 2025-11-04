@@ -49,9 +49,9 @@ canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
 // --- CONFIGURACIÓN ---
-const SYMBOLS = 'A̷͑̎R̴͂T̵̛ΨΣЖ∇∑∴☿⟟☍✦♃☉∂ᚠᚢᛗᚱᚨᛚᛟ∞ΛΩΞI̶@#$%&*!';
+const SYMBOLS = 'αβγδεζηθλμπ♃∂∫∂∇01ᛚᛟ∞ΛΩΞIβ@#$%&*!';
 const COLORS = ['#ff0000', '#00ff00', '#00aaff', '#ffffff']; // rojo, verde, azul, blanco
-const SYMBOL_COUNT = 10;   // pocos símbolos, menos ruido visual
+const SYMBOL_COUNT = 15;   // pocos símbolos, menos ruido visual
 const SYMBOL_SIZE = 22;    // tamaño uniforme
 const SPEED = 0.15;        // ⚠️ más lento (antes era 0.4)
 
