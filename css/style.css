@@ -175,7 +175,21 @@ main {
 
 .hero {
     position: relative;
+    width: 100%;
+    height: 100vh;   
+    overflow: hidden;
     padding-bottom: 15vh;
+    z-index: 1;
+}
+
+#heroCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
 }
 
 @media (min-width: 768px) {
@@ -193,45 +207,77 @@ main {
 }
 
 .hero-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    max-width: 1520px;
-    margin-inline: auto;
-    padding: 2rem 1.5rem;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  top: 40%;
+  transform: translateY(-50%);
+  font-family: 'Courier New', monospace;
 }
 
 .hero-text {
     font-size: 40px;
 }
 
+/* contenedor (sin transforms aquí) */
 .hero-images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4.5rem;
-    flex-wrap: wrap;
-    width: 100%;
-    margin-top: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 10rem;
 }
 
+/* ESTADO INICIAL de cada imagen: define aquí transform + transition */
+.hero-images img {
+  opacity: 0;
+  transform: translateY(-300px) scale(0.8);   /* estado inicial fuera */
+  transition: transform 1.2s ease, opacity 1.2s ease;
+}
+
+/* ESTADO FINAL (cuando el JS añade .visible) */
+.hero-images img.visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* .himage solo para tamaño/estética, sin transform/transition */
 .himage {
-    width: 200px;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.4s ease;
+  filter: grayscale(100%) contrast(150%) brightness(90%);
+  transition: filter 1s ease;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  /* NO poner transform ni transition aquí */
 }
 
+/* posiciones específicas (follow your layout) */
 .hero-images #imagen-alan,
-#imagen-diffie {
-    position: relative;
-    top: 80px;
+.hero-images #imagen-diffie {
+  position: relative;
+  top: 80px;
 }
 
-.himage:hover {
-    transform: scale(1.05);
+.hero-images img {
+    opacity: 0;
+    transform: translateY(-300px) scale(3); 
+    transition: transform 1s ease, opacity 3s ease, filter 1.2s ease;
+}
+
+
+/* HOVER: usar el mismo transform (combinar translate + scale) */
+.hero-images img:hover {
+  filter: grayscale(0);
+  transform: translateY(-20px) scale(1.12); /* unidad y combinar */
+  /*añadir sombra */
+  filter: drop-shadow(0 8px 20px rgba(20, 87, 131, 0.253));
+  /* transicion a color */
+  filter: grayscale(0) contrast(120%) brightness(100%);
+  /* transicion de posición */
+  transform: translateY(-20px) scale(1.12);
 }
 
 @keyframes fadeIn {
