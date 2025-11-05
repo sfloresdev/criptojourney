@@ -213,7 +213,6 @@ main {
   text-align: center;
   top: 40%;
   transform: translateY(-50%);
-  /* font-family: 'Courier New', monospace; Por que utilizas otra fuente? */
 }
 
 .hero-text {
