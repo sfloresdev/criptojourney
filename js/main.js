@@ -23,7 +23,6 @@ canvas.height = canvas.offsetHeight;
 
 // --- CONFIGURACIÓN ---
 const SYMBOLS = 'αβγδεζηθλμπ♃∂∫∂∇01ᛚᛟ∞ΛΩΞIβ@#$%&*!';
-const COLORS = ['#ff0000', '#00ff00', '#00aaff', '#ffffff']; // rojo, verde, azul, blanco
 const SYMBOL_COUNT = 15;   // pocos símbolos, menos ruido visual
 const SYMBOL_SIZE = 22;    // tamaño uniforme
 const SPEED = 0.15;        // ⚠️ más lento (antes era 0.4)
@@ -35,7 +34,7 @@ for (let i = 0; i < SYMBOL_COUNT; i++) {
   symbols.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    color: '#727171c8',
     char: SYMBOLS.charAt(Math.floor(Math.random() * SYMBOLS.length)),
     opacity: 1,
   });
@@ -65,7 +64,7 @@ function animate() {
     if (s.y > canvas.height + SYMBOL_SIZE) {
       s.y = -SYMBOL_SIZE;
       s.x = Math.random() * canvas.width;
-      s.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      s.color = '#727171c8';
       s.char = SYMBOLS.charAt(Math.floor(Math.random() * SYMBOLS.length),);
     }
   }

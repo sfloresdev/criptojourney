@@ -208,6 +208,9 @@ main {
 }
 
 .hero-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
   position: relative;
   z-index: 2;
   text-align: center;
@@ -216,7 +219,64 @@ main {
 }
 
 .hero-text {
-    font-size: 40px;
+  display: flex;
+  position: relative;
+  padding-top: 10px;
+  font-size: 10px;
+  width: 100%;
+}
+
+.hero-text1{
+    text-align: left;
+    padding-left: 100px;
+    color: #5050508a;
+}
+
+.hero-text2{
+    text-align: left;
+    padding-left: 200px;
+}
+.hero-text-header{
+    color: #5050508a;
+}
+.hero-text-body{
+  opacity: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #2f2f2f, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 0 10px rgba(255, 255, 255, 0.141);
+  transform: translateY(-300px) scale(0.8);
+  animation: appear 1.2s ease-out forwards;
+  
+}
+.highlight {
+  position: relative;
+}
+
+.highlight::after {
+  content: "";
+  position: absolute;
+  left: 150px;
+  bottom: 0;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, #333434, #dcdedd);
+  animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* contenedor (sin transforms aquí) */
@@ -227,7 +287,7 @@ main {
   gap: 4.5rem;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
 /* ESTADO INICIAL de cada imagen: define aquí transform + transition */
