@@ -251,32 +251,31 @@ main {
   animation: appear 1.2s ease-out forwards;
   
 }
-.highlight {
-  position: relative;
-}
-
-.highlight::after {
-  content: "";
-  position: absolute;
-  left: 150px;
-  bottom: 0;
-  width: 80%;
-  height: 2px;
-  background: linear-gradient(90deg, #333434, #dcdedd);
-  animation: scan 4s linear infinite;
-}
-
-@keyframes scan {
-  0% { transform: translateX(-100%); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateX(100%); opacity: 0; }
-}
 
 @keyframes appear {
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* La barra animada va aparte y detrás */
+.underline {
+  position: absolute;
+  bottom: 0;       /* ajusta según la altura del texto */
+  left: 120px;
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(90deg, #333434, #dcdedd);
+  animation: underline-scan 3.5s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes underline-scan {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
 }
 
 /* contenedor (sin transforms aquí) */
