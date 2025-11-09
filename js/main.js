@@ -84,6 +84,7 @@ animate();
 // Bloque para el menu
 let btn = document.getElementById('menu-btn');
 let menu = document.getElementById('menu');
+const link = document.querySelectorAll('.menu-header a');
 
 btn.addEventListener("click", () => {
   menu.classList.toggle("active");
@@ -93,6 +94,30 @@ document.addEventListener("click", (event) => {
   if (!btn.contains(event.target) && !menu.contains(event.target)) {
     menu.classList.remove("active");
   }
+});
+
+for (let i = 0; i < link.length; i++) {
+    link[i].addEventListener("click", () => {
+      menu.classList.remove("active");
+    }); 
+}
+
+/*--------Animación del menu--------*/
+const links = document.querySelectorAll('.menu-header a');
+const highlight = document.querySelector('.menu-header .highlight');
+
+links.forEach(link => {
+  link.addEventListener('mouseenter', e => {
+    const { offsetTop, offsetHeight, offsetWidth, offsetLeft } = e.target;
+    highlight.style.top = offsetTop + 'px';
+    highlight.style.left = offsetLeft + 'px';
+    highlight.style.width = offsetWidth + 'px';
+    highlight.style.height = offsetHeight + 'px';
+  });
+});
+
+document.querySelector('.menu-header').addEventListener('mouseleave', () => {
+  highlight.style.width = 0;
 });
 
 const encryptionSection = document.querySelector('.encryption-section');

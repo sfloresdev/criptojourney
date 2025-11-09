@@ -141,18 +141,120 @@ header {
     pointer-events: auto;
 }
 
+.menu-header .highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 50px;
+  background-color: #0072f5;
+  border-radius: 8px;
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
 .menu-header a {
-    display: inline-block;
+    display:inline-block;
     padding: 5px 10px;
     text-decoration: none;
     color: #fffcfc;
     border-radius: 2px;
-    transition: background-color 0.6s ease;
+    transition: transform 0.3s ease;
 }
 
 .menu-header a:hover {
-    /*background-color: #4e86be84;*/
-    background-color: #0072f5;
+    transform: scale(1.15);
+}
+
+@media (max-width: 720px) {
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        /* no importa demasiado, ahora lo controla header-container */
+        align-items: center;
+        padding: 0.75rem 0;
+        /* el espacio arriba y abajo del header */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 48px;
+        background-color: #000000;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1520px;
+        margin-inline: auto;
+        padding: 0 0 ;
+    }
+
+    .menu-desplegable {
+        position: relative;
+        display: inline-block;
+    }
+
+    #menu-btn {
+        width: 50px;
+        cursor: pointer;
+    }
+
+    .menu-header {
+        display: flex;
+        flex-direction: column; /* uno debajo del otro */
+        opacity: 0;
+        transform: translateX(155px);
+        pointer-events: none;
+        position: absolute;
+        height: 95vh;
+        width: 100vw;
+        top: -15px;
+        right: 0;
+        white-space: nowrap;
+        background-color: rgb(0, 0, 0);
+        padding: 7px;
+        z-index: 100;
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .menu-header.active {
+        opacity: 1;
+        transform: translateX(220px);
+        transform: translateY(50px);
+        
+    }
+
+    .menu-header .highlight {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 50px;
+        background-color: #0072f5;
+        border-radius: 8px;
+        transition: all 0.5s ease;
+        z-index: 0;
+    }
+
+    .menu-header a {
+        display: block;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: #fffcfc;
+        border-radius: 2px;
+        transition: transform 0.6s ease;
+        z-index: 1;
+    }
+
+    .menu-header a:hover {
+        transform: translateX(55px) scaleX(1.15);
+        z-index: 1;
+    }
 }
 
 main {
@@ -660,7 +762,7 @@ main {
 
 #logo_header {
     width: 175px;
-    height: auto;
+    height: 70px;
     transition: transform 0.7s ease;
     transform-style: preserve-3d;
 }
