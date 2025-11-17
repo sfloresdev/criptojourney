@@ -147,7 +147,7 @@ header {
   left: 0;
   width: 0;
   height: 50px;
-  background-color: #0072f5;
+  background-color: #0072f598;
   border-radius: 8px;
   transition: all 0.5s ease;
   z-index: 0;
@@ -160,6 +160,7 @@ header {
     color: #fffcfc;
     border-radius: 2px;
     transition: transform 0.3s ease;
+    z-index: 1;
 }
 
 .menu-header a:hover {
@@ -281,6 +282,7 @@ main {
     width: 100%;
     height: 100vh;   
     overflow: hidden;
+    padding-top: 0; /* móvil por defecto */
     padding-bottom: 15vh;
     z-index: 1;
 }
@@ -295,20 +297,38 @@ main {
   pointer-events: none;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1320px) {
     .hero {
-        padding-bottom: 20vh;
-        /* mas en tablets */
-    }
-}
-
-@media (min-width: 1200px) {
-    .hero {
-        padding-bottom: 25vh;
+        padding-top: 25vh;
         /* mas en escritorio */
     }
 }
+@media (max-width: 1120px) {
+    .hero {
+        padding-top: 25vh;
+        /* mas en escritorio */
+    }
+}
+@media (max-width: 1016px) {
+    .hero {
+        padding-top: 15vh;
+        /* mas en escritorio */
+    }
+}
+@media (max-width: 776px) {
+    .hero {
+        padding-top: 60vh;
+        
+    }
+    
+}
 
+@media (max-width: 623px) {
+    .hero {
+        padding-top: 70vh;
+        
+    }
+}
 .hero-container {
   display: grid;
   justify-content: center;
@@ -336,14 +356,14 @@ main {
 
 .hero-text2{
     text-align: left;
-    padding-left: 200px;
+    padding-left: 125px;
 }
 .hero-text-header{
     color: #5050508a;
 }
 .hero-text-body{
   opacity: 0;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   background: linear-gradient(90deg, #2f2f2f, #ffffff);
   -webkit-background-clip: text;
@@ -395,13 +415,20 @@ main {
 .hero-images img {
   opacity: 0;
   transform: translateY(-300px) scale(0.8);   /* estado inicial fuera */
-  transition: transform 1.2s ease, opacity 1.2s ease;
+   --punto: 60%;
+
+  /* máscara con gradiente que usa la variable */
+  mask-image: linear-gradient(to bottom, black var(--punto), transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black var(--punto), transparent);
+
+  transition: transform 1.2s ease, opacity 1.2s ease, --punto 1.5s ease;
 }
 
 /* ESTADO FINAL (cuando el JS añade .visible) */
 .hero-images img.visible {
   opacity: 1;
   transform: translate(0, 0) scale(1);
+  
 }
 
 /* .himage solo para tamaño/estética, sin transform/transition */
@@ -431,14 +458,10 @@ main {
 
 /* HOVER: usar el mismo transform (combinar translate + scale) */
 .hero-images img:hover {
-  filter: grayscale(0);
-  transform: translateY(-20px) scale(1.12); /* unidad y combinar */
-  /*añadir sombra */
-  filter: drop-shadow(0 8px 20px rgba(20, 87, 131, 0.253));
+  transform: translateY(-10px) scale(1.05); /* unidad y combinar */
+  /*añadir sombra */ 
   /* transicion a color */
-  filter: grayscale(0) contrast(120%) brightness(100%);
-  /* transicion de posición */
-  transform: translateY(-20px) scale(1.12);
+  filter: grayscale(0) contrast(120%) brightness(100%) drop-shadow(0 8px 20px rgba(20, 87, 131, 0.253));
 }
 
 @keyframes fadeIn {
