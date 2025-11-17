@@ -1,0 +1,18 @@
+{
+  "name": "criptojourney",
+  "version": "1.0.0",
+  "description": "**Un viaje interactivo por la historia de la criptografía**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@upstash/redis": "^1.35.6"
+  }
+}

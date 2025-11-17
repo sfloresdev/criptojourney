@@ -132,6 +132,22 @@ const observer = new IntersectionObserver((entries) =>{
 }, {threshold: 0.5});
 observer.observe(encryptionSection);
 
+// Bloque para actualizar los visitantes del sitio
+async function updateVisitors() {
+  try {
+    const response = await fetch('/api/visitas');
+    const data = await response.json();
+
+    const contadorSpan = document.getElementById('visitor-count');
+    if (contadorSpan){
+      contadorSpan.textContent = data.visitas.toLocaleString();
+    }
+  } catch (err){
+    console.error('ERROR al obtener el contador', err);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', updateVisitors);
 
 // Bloque para el status de la pagina en el footer
 // Objeto que almacena los posibles estados del sitio
