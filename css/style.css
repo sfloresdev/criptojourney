@@ -167,7 +167,7 @@ header {
     transform: scale(1.15);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 920px) {
     header {
         width: 100%;
         display: flex;
@@ -297,38 +297,6 @@ main {
   pointer-events: none;
 }
 
-@media (max-width: 1320px) {
-    .hero {
-        padding-top: 25vh;
-        /* mas en escritorio */
-    }
-}
-@media (max-width: 1120px) {
-    .hero {
-        padding-top: 25vh;
-        /* mas en escritorio */
-    }
-}
-@media (max-width: 1016px) {
-    .hero {
-        padding-top: 15vh;
-        /* mas en escritorio */
-    }
-}
-@media (max-width: 776px) {
-    .hero {
-        padding-top: 60vh;
-        
-    }
-    
-}
-
-@media (max-width: 623px) {
-    .hero {
-        padding-top: 70vh;
-        
-    }
-}
 .hero-container {
   display: grid;
   justify-content: center;
@@ -468,6 +436,104 @@ main {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 1320px) {
+    .hero {
+        padding-top: 10vh;
+        /* mas en escritorio */
+    }
+    .hero-images {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 5rem;
+    }
+    .himage {
+        filter: grayscale(100%) contrast(150%) brightness(90%);
+        transition: filter 1s ease;
+        width: 180px;
+        height: auto;
+        border-radius: 10px;
+        display: block;
+        /* NO poner transform ni transition aquí */
+    }
+}
+@media (max-width: 1120px) {
+    .hero {
+        padding-top: 5vh;
+        /* mas en escritorio */
+    }
+}
+@media (max-width: 1016px) {
+    .hero {
+        padding-top: 15vh;
+        /* mas en escritorio */
+    }
+    .hero-images {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3.5rem;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 5rem;
+    }
+}
+@media (max-width: 776px) {
+    .hero {
+        padding-top: 10vh;
+        
+    }
+    .hero-images {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        width: 100%;
+        margin-top: 5rem;
+    }
+
+    .himage {
+        filter: grayscale(100%) contrast(150%) brightness(90%);
+        transition: filter 1s ease;
+        width: 180px;
+        height: auto;
+        border-radius: 10px;
+        display: block;
+        /* NO poner transform ni transition aquí */
+    }
+            
+}
+
+@media (max-width: 643px) {
+    .hero {
+        padding-top: 10vh;
+        
+    }
+    .hero-images {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        width: 100%;
+        margin-top: 5rem;
+    }
+
+    .himage {
+        filter: grayscale(100%) contrast(150%) brightness(90%);
+        transition: filter 1s ease;
+        width: 160px;
+        height: auto;
+        border-radius: 10px;
+        display: block;
+        /* NO poner transform ni transition aquí */
     }
 }
 
