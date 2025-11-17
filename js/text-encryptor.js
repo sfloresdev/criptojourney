@@ -11,22 +11,23 @@ const caesar = (shift) => (char) => {
 const toHex = (char) => char.charCodeAt(0).toString(16);
 
 const fromSet = (set) => (char, index) => {
-	return set[(char.charCodeAt(0) + index) % set.length];
+	return set[index % set.length];
 };
 
 // == Conjunto de simbolos ==
 const symbolSets = {
+
 	unicode: ['◆', '●', '■', '★', '✦', '◊', '▲', '▼'],
 	math: ['∞', '≈', '±', '∓', '∑', '∫', '∝', '∣'],
 	glyphs: ['!', '¶', '=', '?', '$', '&', '¡', '#'],
 	morse: ['.', '-', '-', '-', '.', '-', '.', '-'],
 	binary: ['1', '1', '1', '0', '1', '0', '0'],
-	standard: ['c', 'o', 'n', 'o', 'c', 'e', 'l', 'o', 's']
+	standard: ['n', 'o', 's', 'o', 't', 'r', 'o', 's']
 }
 
 // Definicion de cifrados
 const ciphers = [
-	{ name: "Conocelos...", transform: fromSet(symbolSets.standard) },
+	{ name: "Conocelos...", transform: (char) => char },
 	{ name: "Cifrado César +1", transform: caesar(1) },
 	{ name: "Cifrado César +5", transform: caesar(5) },
 	{ name: "ROT13", transform: caesar(13) },
