@@ -172,4 +172,4 @@ function updateStatus(newStatusKey) {
   statusText.textContent = newState.text;
 }
 
-updateStatus("offline");
+updateStatus("maintenance");
