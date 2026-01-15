@@ -173,3 +173,17 @@ function updateStatus(newStatusKey) {
 }
 
 updateStatus("maintenance");
+
+let imagenes = document.getElementsByClassName('himage');
+let texto = document.getElementsByClassName('texto-imagen');
+
+for (let i = 0; i < imagenes.length; i++) {
+  imagenes[i].addEventListener('mouseenter', e =>{
+    texto[i].innerHTML = imagenes[i].alt + '<span class="underline"></span>';
+  });
+
+  imagenes[i].addEventListener('mouseleave', l =>{
+    texto[i].textContent = '';
+  });
+  
+}
