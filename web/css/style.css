@@ -327,7 +327,7 @@ main {
     padding-left: 125px;
 }
 .hero-text-header{
-    color: #5050508a;
+    color: #505050c7;
 }
 .hero-text-body{
   opacity: 0;
@@ -379,7 +379,7 @@ main {
   margin-top: 5rem;
 }
 
-/* ESTADO INICIAL de cada imagen: define aquí transform + transition */
+
 .hero-images img {
   opacity: 0;
   transform: translateY(-300px) scale(0.8);   /* estado inicial fuera */
@@ -410,9 +410,8 @@ main {
   /* NO poner transform ni transition aquí */
 }
 
-/* posiciones específicas (follow your layout) */
-.hero-images #imagen-alan,
-.hero-images #imagen-diffie {
+.img-block:nth-child(2),
+.img-block:nth-child(4) {
   position: relative;
   top: 80px;
 }
@@ -423,6 +422,40 @@ main {
     transition: transform 1s ease, opacity 3s ease, filter 1.2s ease;
 }
 
+.img-block{
+    position: relative;
+}
+
+.hero-images .texto-imagen {
+    position: absolute;
+    left: 50px;
+    background: linear-gradient(90deg, #333434, #dcdedd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 0 10px rgba(255, 255, 255, 0.141);
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.3s ease, transform 0.8s ease;
+    pointer-events: none;  /* opcional */
+}
+
+/* Cuando haces hover en la imagen, se muestra el texto */
+.hero-images img:hover + .texto-imagen {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.texto-imagen .underline {
+  position: absolute;
+  bottom: 0;       /* ajusta según la altura del texto */
+  left: 30px;
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(90deg, #333434, #dcdedd);
+  animation: underline-scan 2.5s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
 
 /* HOVER: usar el mismo transform (combinar translate + scale) */
 .hero-images img:hover {
