@@ -120,6 +120,23 @@ document.querySelector('.menu-header').addEventListener('mouseleave', () => {
   highlight.style.width = 0;
 });
 
+const logout = document.querySelectorAll('.logout a');
+const highlight_logout= document.querySelector('.logout .highlight');
+
+logout.forEach(l => {
+  l.addEventListener('mouseenter', e => {
+    const { offsetTop, offsetHeight, offsetWidth, offsetLeft } = e.target;
+    highlight_logout.style.top = offsetTop + 'px';
+    highlight_logout.style.left = offsetLeft + 'px';
+    highlight_logout.style.width = offsetWidth + 'px';
+    highlight_logout.style.height = offsetHeight + 'px';
+  });
+});
+
+document.querySelector('.logout').addEventListener('mouseleave', () => {
+  highlight_logout.style.width = 0;
+});
+
 const encryptionSection = document.querySelector('.encryption-section');
 
 const observer = new IntersectionObserver((entries) =>{

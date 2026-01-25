@@ -39,7 +39,7 @@ La base de datos se emplea exclusivamente para gestionar el **sistema de inicio 
 
 ### 4.3 Diagrama EER (ASCII)
 
-![Diagrama EER](../assets/images/criptojourney.drawio.png)
+![Diagrama EER](../web/assets/images/criptojourney.drawio.png)
 
 
 ---

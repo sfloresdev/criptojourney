@@ -58,7 +58,7 @@
 @media (min-width: 1600px) {
     .container {
         width: min(90%, 1600px);
-        ;
+        
     }
 }
 
@@ -164,6 +164,43 @@ header {
 }
 
 .menu-header a:hover {
+    transform: scale(1.15);
+}
+.logout{
+    opacity: 1;
+    transform: translateX(55px);
+    position: absolute;
+    top: 5px;
+    right: 80px;
+    white-space: nowrap;
+    background-color: rgb(0, 0, 0);
+    padding: 7px;
+    z-index: 100;
+    transition: transform 0.8s ease;
+}
+.logout a{
+    display:inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #fffcfc;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.logout .highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 50px;
+  background-color: #0072f598;
+  border-radius: 8px;
+  transition: all 0.5s ease;
+  z-index: 0;
+}
+
+.logout a:hover {
     transform: scale(1.15);
 }
 
@@ -586,6 +623,76 @@ main {
     max-width: var(--container-width);
     margin-inline: auto;
 }
+/* Contenedor del botón centrado */
+.articles .article-footer {
+    width: 100%;         /* ocupa todo el ancho del article */
+    text-align: center;  /* centra el contenido inline (el enlace) */
+    margin-top: 1.5rem;
+}
+
+/* Estilo del botón */
+.articles .article-footer .btn {
+    display: inline-block; /* necesario para que text-align funcione */
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: none;
+    background-color: #000000;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.articles .article-footer .btn:hover {
+    background-color: #000000;
+    transform: scale(1.02);
+}
+/* BOTONES DE VALORAR Y WIKI */
+.articles .btn,
+.valoracion-form button {
+    background-color: #000;       /* fondo negro */
+    color: #fff;                  /* texto blanco */
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: 
+        background-color 0.3s ease,
+        transform 0.2s ease,
+        box-shadow 0.3s ease;    /* transición para el brillo */
+    box-shadow: 0 0 8px rgba(255,255,255,0.2); /* glow inicial suave */
+}
+
+/* Hover: aumentar brillo y escalar ligeramente */
+.articles .btn:hover,
+.valoracion-form button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255,255,255,0.4),
+                0 0 25px rgba(0, 114, 245,0.3); /* doble glow con color */
+    background-color: #111; /* un poquito más claro al hover */
+}
+
+.articles article {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centrar todo internamente */
+    padding: 2rem 0;
+    width: 100%;
+    max-width: 1000px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: border-color 0.3s ease;
+}
+
+.articles article .article-header,
+.articles article .article-summary,
+.articles article .detailed-explanation {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 700px;
+}
 
 /* Líneas verticales a los lados del bloque */
 .articles::before,
@@ -614,6 +721,94 @@ main {
 /* Línea derecha */
 .articles::after {
     right: 0;
+}
+
+/* ===================== ESTILO FORMULARIO DE VALORACIÓN ===================== */
+.valoracion-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.valoracion-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    width: 100%;
+    max-width: 500px;
+    font-size: var(--body);
+    color: #ddd;
+}
+
+.valoracion-form select,
+.valoracion-form textarea {
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background-color: rgba(255,255,255,0.05);
+    color: #fff;
+    font-size: var(--body);
+    width: 100%;
+    resize: vertical;
+}
+
+.valoracion-form button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: none;
+    background-color: #000000;
+    text-shadow: 2px 0 10px rgba(255, 255, 255, 0.141);
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.valoracion-form button:hover {
+    background-color: #000000;
+    transform: scale(1.02);
+}
+
+/* ===================== ESTILO VALORACIONES EXISTENTES ===================== */
+.valoraciones-existentes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.valoracion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    background-color: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.95rem;
+    color: #ddd;
+}
+
+.valoracion strong {
+    color: #fff;
+}
+
+.valoracion-stars {
+    color: #FFD700; /* dorado */
+    font-size: 1.1rem;
+}
+
+.valoracion p {
+    margin: 0.2rem 0 0 0;
+    font-size: 0.9rem;
+    color: #ccc;
 }
 
 /* En pantallas pequeñas, se ocultan */
@@ -691,15 +886,6 @@ main {
 
 .articles article .detailed-explanation {
     padding-top: 1.5rem;
-    position: relative;
-}
-
-/* --- BOTÓN WIKI --- */
-.articles .btn {
-    display: inline-block;
-    align-self: center;
-    margin-top: 1rem;
-    text-align: center;
     position: relative;
 }
 
