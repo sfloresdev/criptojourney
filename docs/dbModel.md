@@ -184,35 +184,3 @@ CREATE TABLE IF NOT EXISTS valoraciones
 							que se auto incrementa por cada nueva valoración la cual es hecha por un usuario unico a un articulo unico, 
 							la puntuación es entre 1 y 5';
 ```
-
----
-
-## 9. Consultas SQL Frecuentes
-
-### 9.1 Obtener valoraciones de un artículo
-```sql
-SELECT u.nombre, v.puntuacion, v.comentario, v.fecha_val
-FROM valoraciones v
-JOIN usuarios u ON v.id_usuario = u.id_usuario
-WHERE v.id_articulo = 1;
-```
-
-### 9.2 Calcular la puntuación media de un artículo
-```
-SELECT id_articulo, AVG(puntuacion) AS media
-FROM valoraciones
-GROUP BY id_articulo;
-```
-
-### 9.3 Insertar un nuevo usuario
-```
-INSERT INTO usuarios (nombre, email, password)
-VALUES ('Usuario Ejemplo', 'usuario@ejemplo.com', '<hash_contraseña>');
-```
-
-### 9.4 Insertar una valoración
-```
-
-INSERT INTO valoraciones (id_usuario, id_articulo, puntuacion, comentario)
-VALUES (1, 3, 4, 'Artículo claro y bien explicado');
-```
