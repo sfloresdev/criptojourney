@@ -10,85 +10,141 @@
 
 ---
 
-## 🌐 Demo
-
-**[👉 Visita CriptoJourney](https://criptojourney.org)**
+🌐 **Demo:** [Visita CriptoJourney](https://criptojourney.org)
 
 ---
 
 ## 📖 Sobre el Proyecto
 
-**CriptoJourney** es una plataforma educativa interactiva que enseña la evolución histórica de la criptografía desde la antigüedad hasta la era digital. A través de demostraciones prácticas y una narrativa cronológica, los visitantes pueden experimentar directamente con los algoritmos que han protegido la información a lo largo de la historia.
+CriptoJourney es una plataforma educativa interactiva que enseña la evolución histórica de la criptografía desde la antigüedad hasta la era digital. A través de demostraciones prácticas y una narrativa cronológica, los visitantes pueden experimentar directamente con los algoritmos que han protegido la información a lo largo de la historia.
 
-### 🎯 Objetivos
+---
 
-1. **Educar:** Explicar los fundamentos de los principales algoritmos de encriptación destacando su contexto histórico y relevancia
-2. **Interactuar:** Ofrecer demostraciones prácticas donde los usuarios experimenten directamente con cada algoritmo
-3. **Inspirar:** Demostrar la importancia de la criptografía y su impacto en la seguridad digital actual
-4. **Conectar:** Mostrar cómo cada avance criptográfico fue construido sobre los anteriores mediante una narrativa cronológica
+## 🎯 Objetivos
 
-### 💡 Filosofía
+- **Educar:** Explicar los fundamentos de los principales algoritmos de encriptación destacando su contexto histórico y relevancia.  
+- **Interactuar:** Ofrecer demostraciones prácticas donde los usuarios experimenten directamente con cada algoritmo.  
+- **Inspirar:** Demostrar la importancia de la criptografía y su impacto en la seguridad digital actual.  
+- **Conectar:** Mostrar cómo cada avance criptográfico fue construido sobre los anteriores mediante una narrativa cronológica.  
 
-CriptoJourney nace bajo la filosofía que dio origen a Internet: **el libre acceso a la información y el intercambio del conocimiento sin restricciones**, independientemente del nivel técnico o contexto del usuario.
+---
+
+## 💡 Filosofía
+
+CriptoJourney nace bajo la filosofía que dio origen a Internet: el libre acceso a la información y el intercambio del conocimiento sin restricciones, independientemente del nivel técnico o contexto del usuario.
 
 ---
 
 ## ✨ Características
 
-- 🖱️ **Demostraciones interactivas** de cada algoritmo criptográfico
-- ♿ **Accesible**
-- 🔓 **Código abierto** - Disponible para la comunidad
+- 🖱️ Demostraciones interactivas de cada algoritmo criptográfico  
+- ♿ Accesible y responsive  
+- 🔓 Código abierto – Disponible para la comunidad  
+- 🔐 Sistema de registro de usuarios y valoraciones de artículos  
 
 ---
 
 ## 🛠️ Tecnologías
 
-Este proyecto es una **aplicación web estática** construida con tecnologías fundamentales:
-
-| Tecnología | Uso |
-|------------|-----|
-| **HTML5** | Estructura semántica y accesible |
-| **CSS3** | Estilos, animaciones, responsive design (Flexbox, Grid) |
-| **JavaScript (Vanilla)** | Lógica de cifrado, interactividad, animaciones |
-| **Web Crypto API** | Implementación real de SHA-256 |
-| **Git & GitHub** | Control de versiones y colaboración |
+| Tecnología      | Uso                                               |
+|-----------------|--------------------------------------------------|
+| HTML5           | Estructura semántica y accesible                |
+| CSS3            | Estilos, animaciones, responsive design        |
+| JavaScript      | Lógica de cifrado, interactividad, animaciones |
+| Web Crypto API  | Implementación real de SHA-256                 |
+| PHP / MySQL     | Backend y gestión de base de datos              |
+| Git & GitHub    | Control de versiones y colaboración            |
 
 ---
 
 ## 🔐 Algoritmos Implementados
 
-### 1. **Cifrado César** (100 AC)
-*El origen del cifrado por sustitución*
+1. **Cifrado César (100 AC)**  
+   - Input de texto interactivo  
+   - Slider de desplazamiento (1-25 posiciones)  
+   - Visualización de alfabetos  
+   - Contexto histórico: Julio César y comunicaciones militares romanas  
 
-- Input de texto interactivo
-- Slider de desplazamiento (1-25 posiciones)
-- Visualización de alfabetos
-- Contexto histórico: Julio César y las comunicaciones militares romanas
+2. **Máquina Enigma (1918)**  
+   - Simulación visual de la máquina  
+   - Rotores animados con CSS  
+   - Historia: Arthur Scherbius, Alan Turing y la ruptura del código  
 
-### 2. **Máquina Enigma** (1918)
-*El cifrado que cambió la Segunda Guerra Mundial*
+3. **RSA (1977)**  
+   - Explicación conceptual con metáforas visuales  
+   - Diagrama de flujo: cifrado/descifrado  
+   - Animaciones de candado abierto/cerrado  
+   - Contexto: Rivest, Shamir, Adleman  
 
-- Simulación visual de la máquina
-- Rotores animados con CSS
-- Demostración interactiva
-- Historia: Arthur Scherbius, Alan Turing y la ruptura del código
+4. **SHA-256 (2001)**  
+   - Generación de hash en tiempo real con Web Crypto API  
+   - Demostración del "efecto avalancha"  
+   - Relevancia: Bitcoin, blockchain y certificados digitales  
 
-### 3. **RSA** (1977)
-*La revolución de la criptografía de clave pública*
+---
 
-- Explicación conceptual con metáforas visuales
-- Diagrama de flujo: cifrado/descifrado
-- Animaciones de candado abierto/cerrado
-- Contexto: Rivest, Shamir, Adleman y el nacimiento de la criptografía moderna
+## 🛠️ Base de Datos
 
-### 4. **SHA-256** (2001)
-*El guardián de la blockchain*
+La plataforma incluye un **sistema de autenticación y valoraciones** para usuarios y artículos.
 
-- Generación de hash en tiempo real con Web Crypto API
-- Demostración del "efecto avalancha"
-- Visualización hexadecimal
-- Relevancia actual: Bitcoin, blockchain y certificados digitales
+### Modelo de Datos
 
+**Entidades principales:**
+
+- `usuarios`: Información de los usuarios registrados (nombre, email, contraseña hash, fecha de registro)  
+- `articulos`: Artículos sobre criptografía (título, subtítulo, resumen, contenido, fecha de publicación)  
+- `valoraciones`: Valoraciones de usuarios sobre artículos (puntuación 1-5, comentario, fecha)  
+
+**Relaciones:**
+
+- Un usuario puede realizar varias valoraciones  
+- Un artículo puede recibir varias valoraciones  
+- Cada valoración pertenece a un único usuario y a un único artículo  
+
+### Reglas de negocio
+
+- Solo usuarios autenticados pueden valorar artículos o acceder a la wiki  
+- La puntuación debe estar entre 1 y 5  
+- Un usuario no puede valorar el mismo artículo más de una vez  
+- Contraseñas siempre cifradas  
+
+### Script SQL de creación
+
+```sql
+CREATE DATABASE IF NOT EXISTS criptojourney_db;
+USE criptojourney_db;
+
+-- Tabla usuarios
+CREATE TABLE IF NOT EXISTS usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    fec_reg DATE NOT NULL
+);
+
+-- Tabla articulos
+CREATE TABLE IF NOT EXISTS articulos (
+    id_articulo INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(200) NOT NULL,
+    subtitulo VARCHAR(255),
+    resumen TEXT,
+    contenido LONGTEXT NOT NULL,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabla valoraciones
+CREATE TABLE IF NOT EXISTS valoraciones (
+    id_valoracion INT AUTO_INCREMENT PRIMARY KEY,
+    id_articulo INT NOT NULL,
+    id_usuario INT NOT NULL,
+    puntuacion TINYINT NOT NULL CHECK (puntuacion BETWEEN 1 AND 5),
+    comentario TEXT NOT NULL,
+    fec_val DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(id_usuario, id_articulo),
+    FOREIGN KEY (id_articulo) REFERENCES articulos(id_articulo) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
+);
 ---
 
 ## 🚀 Instalación y Uso

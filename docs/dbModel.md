@@ -48,45 +48,68 @@ La base de datos se emplea exclusivamente para gestionar el **sistema de inicio 
 
 ---
 
-### 5.1 Tabla `usuarios`
+## 5.1 Tabla `usuarios`
 
 Almacena la información de los usuarios registrados en la web.
 
-| Campo       | Tipo          | Restricciones                     | Descripción                          |
-|------------|---------------|----------------------------------|--------------------------------------|
-| id_usuario | INT           | PK, AUTO_INCREMENT               | Identificador único del usuario      |
-| nombre     | VARCHAR(50)   | NOT NULL                         | Nombre del usuario                   |
-| email      | VARCHAR(100)  | NOT NULL, UNIQUE                 | Correo electrónico                   |
-| password   | VARCHAR(255)  | NOT NULL                         | Contraseña cifrada (hash)            |
-| fec_reg  | DATETIME      | NOT NULL, DEFAULT CURRENT_TIMESTAMP | Fecha de registro                    |
+| Campo       | Tipo         | Restricciones                          | Descripción                         |
+|------------|-------------|----------------------------------------|-------------------------------------|
+| id_usuario | INT         | PK, AUTO_INCREMENT                     | Identificador único del usuario     |
+| nombre     | VARCHAR(50) | NOT NULL                               | Nombre del usuario                  |
+| email      | VARCHAR(100)| NOT NULL, UNIQUE                        | Correo electrónico                  |
+| password   | VARCHAR(255)| NOT NULL                               | Contraseña cifrada (hash)           |
+| fec_reg    | DATETIME    | NOT NULL, DEFAULT CURRENT_TIMESTAMP    | Fecha de registro                   |
 
 ---
 
-### 5.2 Tabla `articulos`
+## 5.2 Tabla `articulos`
 
 Contiene los artículos informativos sobre criptografía.
 
-| Campo       | Tipo          | Restricciones                     | Descripción                          |
-|------------|---------------|----------------------------------|--------------------------------------|
-| id_articulo| INT           | PK, AUTO_INCREMENT               | Identificador del artículo           |
-| titulo     | VARCHAR(50)  | NOT NULL                         | Título del artículo                  |
-| fec_pub  | DATETIME      | NOT NULL, DEFAULT CURRENT_TIMESTAMP | Fecha de publicación                 |
+| Campo       | Tipo         | Restricciones                          | Descripción                         |
+|------------|-------------|----------------------------------------|-------------------------------------|
+| id_articulo | INT         | PK, AUTO_INCREMENT                     | Identificador del artículo          |
+| titulo      | VARCHAR(50) | NOT NULL                               | Título del artículo                 |
+| subtitulo   | VARCHAR(255)| NULL                                   | Subtítulo opcional                  |
+| resumen     | TEXT        | NULL                                   | Resumen del artículo                |
+| contenido   | LONGTEXT    | NOT NULL                               | Contenido completo del artículo     |
+| fecha       | DATETIME    | NOT NULL, DEFAULT CURRENT_TIMESTAMP    | Fecha de publicación                |
 
 ---
 
-### 5.3 Tabla `valoraciones`
+## 5.3 Tabla `valoraciones`
 
 Registra las valoraciones realizadas por los usuarios sobre los artículos.
 
-| Campo         | Tipo     | Restricciones                                             | Descripción                         |
-|---------------|----------|-----------------------------------------------------------|-------------------------------------|
-| id_valoracion | INT      | PK, AUTO_INCREMENT                                        | Identificador de la valoración      |
-| id_usuario    | INT      | FK → usuarios(id_usuario), NOT NULL                      | Usuario que realiza la valoración   |
-| id_articulo   | INT      | FK → articulos(id_articulo), NOT NULL                    | Artículo valorado                   |
-| puntuacion    | TINYINT  | NOT NULL, CHECK (puntuacion BETWEEN 1 AND 5)             | Puntuación del 1 al 5               |
-| comentario    | TEXT     | NULL                                                      | Comentario opcional                 |
-| fec_val     | DATETIME | NOT NULL, DEFAULT CURRENT_TIMESTAMP                      | Fecha de la valoración              |
+| Campo         | Tipo      | Restricciones                                              | Descripción                          |
+|---------------|----------|------------------------------------------------------------|--------------------------------------|
+| id_valoracion | INT      | PK, AUTO_INCREMENT                                         | Identificador de la valoración       |
+| id_usuario    | INT      | FK → usuarios(id_usuario), NOT NULL                        | Usuario que realiza la valoración    |
+| id_articulo   | INT      | FK → articulos(id_articulo), NOT NULL                      | Artículo valorado                     |
+| puntuacion    | TINYINT  | NOT NULL, CHECK (puntuacion BETWEEN 1 AND 5)              | Puntuación del 1 al 5                |
+| comentario    | TEXT     | NULL                                                       | Comentario opcional                   |
+| fec_val       | DATETIME | NOT NULL, DEFAULT CURRENT_TIMESTAMP                        | Fecha de la valoración                |
 
+**Relaciones:**
+
+- `id_usuario` → `usuarios(id_usuario)`  
+- `id_articulo` → `articulos(id_articulo)`  
+- Se recomienda `ON DELETE CASCADE` y `ON UPDATE CASCADE` para mantener integridad referencial.
+
+---
+
+## 5.4 Tabla `hero_images`
+
+Almacena las imágenes destacadas que aparecen en la sección “hero” de la página principal.
+
+| Campo     | Tipo         | Restricciones                        | Descripción                          |
+|----------|-------------|--------------------------------------|--------------------------------------|
+| id_imagen | INT         | PK, AUTO_INCREMENT                   | Identificador único de la imagen    |
+| imagen    | VARCHAR(255)| NOT NULL                              | Nombre del archivo de la imagen     |
+| alt       | VARCHAR(255)| NULL                                   | Texto alternativo para accesibilidad |
+| html_id   | VARCHAR(100)| NULL                                   | ID HTML para manipulación en frontend|
+| activa    | BOOLEAN     | DEFAULT 1                              | Determina si la imagen está activa   |
+| orden     | INT         | DEFAULT 0                              | Orden de visualización en el carrusel|
 ---
 
 ## 6. Reglas de Negocio
