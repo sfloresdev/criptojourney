@@ -28,14 +28,45 @@ La base de datos se emplea exclusivamente para gestionar el **sistema de inicio 
 ## 4. Modelo Entidad–Relación (EER)
 
 ### 4.1 Entidades
+
 - **Usuario**
+  - id_usuario (PK)
+  - nombre
+  - email
+  - password
+  - fec_reg
+
 - **Artículo**
+  - id_articulo (PK)
+  - titulo
+  - subtitulo (opcional)
+  - resumen (opcional)
+  - contenido
+  - fecha
+
 - **Valoración**
+  - id_valoracion (PK)
+  - id_usuario (FK → Usuario)
+  - id_articulo (FK → Artículo)
+  - puntuacion (1–5)
+  - comentario (opcional)
+  - fec_val
+
+- **Hero_Image**
+  - id_imagen (PK)
+  - imagen
+  - alt (opcional)
+  - html_id (opcional)
+  - activa (boolean)
+  - orden
 
 ### 4.2 Relaciones
-- Un **usuario** puede realizar **varias valoraciones**.
-- Un **artículo** puede recibir **varias valoraciones**.
-- Cada **valoración** pertenece a **un único usuario** y **un único artículo**.
+
+- Un **usuario** puede realizar **varias valoraciones**.  
+- Un **artículo** puede recibir **varias valoraciones**.  
+- Cada **valoración** pertenece a **un único usuario** y **un único artículo**.  
+- La entidad **Hero_Image** no tiene relaciones directas, se usa para mostrar imágenes destacadas en la página principal.
+
 
 ### 4.3 Diagrama EER (ASCII)
 
@@ -115,19 +146,24 @@ Almacena las imágenes destacadas que aparecen en la sección “hero” de la p
 ## 6. Reglas de Negocio
 
 - Un usuario solo puede valorar artículos si está autenticado.
-- Un usuario solo puede acceder a la wiki de la web si esta autenticado.
+- Un usuario solo puede acceder a la wiki de la web si está autenticado.
 - La puntuación de una valoración debe estar entre 1 y 5.
-- Un usuario no debería valorar el mismo artículo más de una vez (restricción lógica desde la aplicación).
+- Un usuario no debería valorar el mismo artículo más de una vez (restricción lógica implementada desde la aplicación).
 - Las contraseñas nunca se almacenan en texto plano.
+- Los invitados pueden navegar por la web y ver artículos, pero no pueden valorar ni acceder a la wiki.
+- La sesión de usuarios y de invitados expira tras un período de inactividad definido.
 
 ---
 
 ## 7. Seguridad
 
-- Uso de **hash seguro** para contraseñas.
-- Validación de datos de entrada para prevenir SQL Injection.
-- Uso de claves foráneas para mantener integridad referencial.
+- Uso de **hash seguro** (bcrypt) para contraseñas.
+- Validación de datos de entrada para prevenir **SQL Injection** y **XSS**.
+- Uso de claves foráneas en la base de datos para mantener **integridad referencial**.
 - Acceso restringido a la base de datos mediante credenciales seguras.
+- Control de sesión para usuarios e invitados, con expiración por inactividad.
+- Evitar exposición de información sensible para invitados (solo acceso a contenido público).
+
 
 ---
 
