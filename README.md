@@ -97,16 +97,20 @@ La plataforma incluye un **sistema de autenticación y valoraciones** para usuar
 
 **Relaciones:**
 
-- Un usuario puede realizar varias valoraciones  
-- Un artículo puede recibir varias valoraciones  
-- Cada valoración pertenece a un único usuario y a un único artículo  
+- Un **usuario** puede realizar **varias valoraciones**.  
+- Un **artículo** puede recibir **varias valoraciones**.  
+- Cada **valoración** pertenece a **un único usuario** y **un único artículo**.  
+- La entidad **Hero_Image** no tiene relaciones directas, se usa para mostrar imágenes destacadas en la página principal.
 
 ### Reglas de negocio
 
-- Solo usuarios autenticados pueden valorar artículos o acceder a la wiki  
-- La puntuación debe estar entre 1 y 5  
-- Un usuario no puede valorar el mismo artículo más de una vez  
-- Contraseñas siempre cifradas  
+- Un usuario solo puede valorar artículos si está autenticado.
+- Un usuario solo puede acceder a la wiki de la web si está autenticado.
+- La puntuación de una valoración debe estar entre 1 y 5.
+- Un usuario no debería valorar el mismo artículo más de una vez (restricción lógica implementada desde la aplicación).
+- Las contraseñas nunca se almacenan en texto plano.
+- Los invitados pueden navegar por la web y ver artículos, pero no pueden valorar ni acceder a la wiki.
+- La sesión de usuarios y de invitados expira tras un período de inactividad definido. 
 
 ### Script SQL de creación
 
