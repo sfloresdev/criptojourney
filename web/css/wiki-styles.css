@@ -1,0 +1,324 @@
+/* ============================================================
+   WIKI STYLES - ADAPTADO AL DISEÑO DE CRIPTOJOURNEY
+   ============================================================ */
+
+/* ============================================================
+   WIKI STYLES - CRIPTOJOURNEY (VERSIÓN FINAL)
+   ============================================================ */
+
+.wiki-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    padding: 3rem 1.5rem;
+    width: 100%;
+    margin-top: 100px; 
+    position: relative;
+    max-width: var(--container-width);
+    margin-inline: auto;
+}
+
+/* Líneas laterales degradadas */
+.wiki-wrapper::before,
+.wiki-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 2rem;
+    bottom: 2rem;
+    width: 1px;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.15) 18%,
+            rgba(255, 255, 255, 0.2) 75%,
+            rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+.wiki-wrapper::before { left: 0; }
+.wiki-wrapper::after { right: 0; }
+
+.wiki-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 2rem 0;
+}
+
+.wiki-header {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem; /* Separación mayor entre cabecera y contenido */
+    position: relative; 
+    z-index: 1;
+}
+
+.wiki-title {
+    font-size: 4rem; /* Un poco más grande para impacto */
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem; /* Separación amplia con el subtítulo */
+    background: linear-gradient(90deg, #2f2f2f, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 0 15px rgba(255, 255, 255, 0.15);
+}
+
+.underline {
+  position: absolute;
+  bottom: 0;       /* ajusta según la altura del texto */
+  left: 280px;
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(90deg, #333434, #dcdedd);
+  animation: underline-scan 3.5s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.wiki-subtitle {
+    font-size: var(--h3);
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 1.5rem; /* Espacio para la línea de subrayado */
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    position: relative; 
+}
+
+/* Secciones de texto */
+.wiki-section {
+    padding-top: 4rem;
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 2rem; /* Más aire entre bloques de texto */
+    text-align: justify;
+}
+
+/* ... mantén el resto de estilos (.wiki-quote, .wiki-formula, etc.) igual que los tenías ... */
+
+.wiki-section h2 {
+    font-size: var(--h2);
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.wiki-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 1.2rem;
+}
+
+/* Elementos especiales */
+.wiki-quote {
+    font-style: italic;
+    color: #888;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.02);
+    text-align: center;
+    width: 100%;
+}
+
+.wiki-formula {
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    text-align: center;
+    color: #0072f5;
+    margin: 2rem 0;
+    font-size: 1rem;
+}
+
+.wiki-info-box {
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.wiki-info-box h3 {
+    font-size: var(--h3);
+    color: #fff;
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+
+/* Listas */
+.wiki-list {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+    color: #ccc;
+    text-align: left;
+}
+
+.wiki-list li {
+    margin-bottom: 0.8rem;
+}
+
+/* Botón inferior */
+.wiki-footer-nav {
+    margin-top: 3rem;
+    width: 100%;
+    text-align: center;
+}
+
+/* Ocultar líneas en móviles como en el main */
+@media (max-width: 900px) {
+    .wiki-wrapper::before,
+    .wiki-wrapper::after {
+        display: none;
+    }
+}
+/* Contenedor del enlace externo */
+.wiki-external-container {
+    width: 100%;
+    max-width: 700px; /* Igual que tus secciones de texto */
+    margin: 0rem auto 4rem auto; /* Mucho margen arriba para separar del contenido */
+    padding: 0 1rem;
+    position: relative;
+    z-index: 5;
+}
+
+/* Caja decorativa */
+.wiki-external-box {
+    border-radius: 16px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+/* Texto de invitación */
+.external-text {
+    font-size: var(--small);
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block; /* Asegura que ocupe su propia línea */
+}
+
+/* Ajuste específico para el botón dentro de la wiki */
+.wiki-external-box .btn {
+    display: inline-block; /* Forzamos para que no se comporte como flex si hay conflictos */
+    padding: 0.8rem 2.5rem;
+    text-decoration: none;
+    font-size: var(--body);
+    transition: all 0.3s ease;
+}
+
+/* ============================================================
+   ESTILOS DE LA BIBLIOTECA (TARJETAS INDIVIDUALES)
+   ============================================================ */
+
+/* Contenedor de la cuadrícula */
+.underline_wikiIndex {
+  position: absolute;
+  bottom: 0;       /* ajusta según la altura del texto */
+  left: 100px;
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(90deg, #333434, #dcdedd);
+  animation: underline-scan 3.5s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.wiki-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+/* Estructura de la Tarjeta */
+.wiki-card-item {
+    perspective: 1000px; /* Prepara el terreno para efectos 3D */
+}
+
+.wiki-card-inner {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+
+/* Efecto al pasar el ratón */
+.wiki-card-item:hover .wiki-card-inner {
+    transform: translateY(-12px);
+    border-color: rgba(0, 114, 245, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
+                0 0 15px rgba(0, 114, 245, 0.2);
+}
+
+/* Título de la tarjeta con degradado */
+.wiki-card-title {
+    font-size: var(--h4);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #a1a1a1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: left;
+}
+
+/* Cuerpo de la tarjeta */
+.wiki-card-body p {
+    font-size: var(--body);
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+/* Botón adaptado a la tarjeta */
+.wiki-card-actions .btn {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 0.8rem;
+    font-size: var(--small);
+    letter-spacing: 1px;
+}
+
+/* Ajuste para 4 tarjetas en pantallas muy anchas */
+@media (min-width: 1200px) {
+    .wiki-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Responsive para tablets y móviles */
+@media (max-width: 900px) {
+    .wiki-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        padding: 0 1.5rem;
+    }
+}

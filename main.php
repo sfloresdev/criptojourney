@@ -6,6 +6,12 @@ require_once __DIR__ . '/app/dat/AccesoDatos.php';
 $modelo = AccesoDatos::initModelo();
 $imagenesHero = $modelo->getHeroImages();
 $articulos = $modelo->getArticulos();
+$todasLasWikis = $modelo->getWikis();
+
+$wikisIndexadas = [];
+foreach ($todasLasWikis as $w) {
+    $wikisIndexadas[$w->id_wiki] = $w;
+}
 
 $valoracionesPorArticulo = [];
 foreach ($articulos as $art) {
@@ -47,8 +53,10 @@ foreach ($articulos as $art) {
 				<div id="menu" class="menu-header">
                     <span class="highlight"></span>
                     <a href="#hero" class="header-link">Inicio</a> 
-                    <a href="#wiki" class="header-link">Wiki</a> 
-                    <a href="#contacto" class="header-link">Contacto</a> 
+					<?php if (!$guest): ?>
+                    	<a href="./app/views/wikis_index.php" class="header-link">Wiki</a> 
+                    <?php endif; ?>
+						<a href="#contacto" class="header-link">Contacto</a> 
                     <a href="#sobre-nosotros" class="header-link">Sobre nosotros</a> 
                 </div>
 			</nav>
@@ -159,8 +167,15 @@ foreach ($articulos as $art) {
 								<?php endforeach; ?>
 							</div>
 							<div class="article-footer">
-								<!-- BOTÓN WIKI SOLO PARA USUARIOS LOGUEADOS -->
-								<a href="wiki.php?id=<?= $articulo->id_articulo ?>" class="btn">Ir a la Wiki</a>
+								<?php 
+									// Buscamos si este artículo tiene una wiki asociada en nuestro array indexado
+									if (isset($wikisIndexadas[$articulo->id_wiki])): 
+										$wikiAsociada = $wikisIndexadas[$articulo->id_wiki];
+									?>
+										<a href="app/views/wiki_detalle.php?id_wiki=<?= $wikiAsociada->id_wiki ?>" class="btn">
+											Ver Wiki: <?= htmlspecialchars($wikiAsociada->titulo_wiki) ?>
+										</a>
+									<?php endif; ?>
 							</div>
 						<?php endif; ?>
 
@@ -189,7 +204,7 @@ foreach ($articulos as $art) {
 				<li><a href="">Guía de estilos</a></li>
 			</ul> 
 		</div> 
-		<div class="footer-column contacto"> 
+		<div class="footer-column contacto" id="contacto"> 
 			<h4>Contacto</h4> 
 			<ul> 
 				<li><a href=""><svg class="icon" data-testid="geist-icon" height="16" stroke-linejoin="round" viewBox="0 0 16 16" width="16"> <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4.25H11C11.4142 4.25 11.75 4.58579 11.75 5V11C11.75 11.4142 11.4142 11.75 11 11.75H5C4.58579 11.75 4.25 11.4142 4.25 11V5C4.25 4.58579 4.58579 4.25 5 4.25ZM3 5C3 3.89543 3.89543 3 5 3H11C12.1046 3 13 3.89543 13 5V11C13 12.1046 12.1046 13 11 13H5C3.89543 13 3 12.1046 3 11V5ZM6.25 7.375H5.625V8.625H6.25H9.75H10.375V7.375H9.75H6.25Z" fill="currentColor"></path> </svg>Email</a></li>
@@ -221,6 +236,7 @@ foreach ($articulos as $art) {
 
 	<script src="web/js/main.js"></script>
 	<script src="web/js/text-encryptor.js"></script>
+	<script src="/api/visitas.js"></script>
 	<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

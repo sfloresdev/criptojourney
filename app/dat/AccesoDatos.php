@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__. "/Articulo.php";
+    require_once __DIR__ . '/Wiki.php';
     require_once __DIR__. "/Usuario.php";
     require_once __DIR__. "/Valoracion.php";
     require_once __DIR__. "/Hero_images.php";
@@ -14,6 +15,7 @@
         private $stmt_addUsuario = null;
         private $stmt_imagen = null;
         private $stmt_articulos = null;
+        private $stmt_wikis = null;
         private $stmt_valoraciones = null;
         private $stmt_getValoraciones = null;
         
@@ -42,7 +44,7 @@
             $this->stmt_articulos = $this->dbh->prepare("SELECT * FROM articulos ORDER BY fecha DESC");
             $this->stmt_valoraciones = $this->dbh->prepare("INSERT INTO valoraciones (id_articulo, id_usuario, puntuacion, comentario) VALUES (:id_articulo, :id_usuario, :puntuacion, :comentario)" );
             $this->stmt_getValoraciones = $this->dbh->prepare("SELECT v.*, u.nombre AS usuario FROM valoraciones v JOIN usuarios u ON v.id_usuario = u.id_usuario WHERE v.id_articulo = :id_articulo ORDER BY v.fec_val DESC");
-            
+            $this->stmt_wikis = $this->dbh->prepare("SELECT * FROM wikis");
         }
 
         public function getUsuarios(){
@@ -86,6 +88,15 @@
                 $articulos = $this->stmt_articulos->fetchAll();
             }
             return $articulos;
+        }
+
+        public function getWikis() {
+            $wikis = [];
+            $this->stmt_wikis->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Wiki');
+            if ($this->stmt_wikis->execute()) {
+                $wikis = $this->stmt_wikis->fetchAll();
+            }
+            return $wikis;
         }
         public function insertValoracion($id_articulo, $id_usuario, $puntuacion, $comentario) {
             try {
