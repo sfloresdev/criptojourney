@@ -14,10 +14,10 @@ class login{
         $usuarios = $this->db->getUsuarios();
             foreach ($usuarios as $usuario) {
                 if ($usuario->email == $mail && password_verify($password, $usuario->password)) {
-                     // 1️⃣ Crear la sesión aquí (o en el script que llama a esta función)
+                     //Crear la sesión aquí (o en el script que llama a esta función)
                     $_SESSION['usuario'] = $usuario->id_usuario;
 
-                    // 2️⃣ Guardar la hora de última actividad
+                    //Guardar la hora de última actividad
                     $_SESSION['ultima_actividad'] = time();
                     return true;
                 }    

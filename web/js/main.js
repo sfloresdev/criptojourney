@@ -378,6 +378,219 @@ const btnCopy = document.getElementById('enigma-copy-btn');
     }
 })();
 
+(function() {
+    const initRSA = () => {
+        const pInput = document.getElementById('rsa-p');
+        const qInput = document.getElementById('rsa-q');
+        const textInput = document.getElementById('rsa-text-input');
+        const output = document.getElementById('rsa-output');
+        const pubKeyDiv = document.getElementById('public-key');
+        const privKeyDiv = document.getElementById('private-key');
+        const btnCopy = document.getElementById('rsa-copy-btn');
+        const btnDecrypt = document.getElementById('rsa-decrypt-btn');
+
+        const esPrimo = (n) => {
+            if (n < 2) return false;
+            for (let i = 2; i <= Math.sqrt(n); i++) if (n % i === 0) return false;
+            return true;
+        };
+
+        const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+
+        const modInverse = (e, phi) => {
+            let m0 = BigInt(phi), t, q, x0 = 0n, x1 = 1n;
+            let a = BigInt(e), b = BigInt(phi);
+            if (b === 1n) return 0n;
+            while (a > 1n) {
+                q = a / b;
+                t = b;
+                b = a % b;
+                a = t;
+                t = x0;
+                x0 = x1 - q * x0;
+                x1 = t;
+            }
+            return x1 < 0n ? x1 + m0 : x1;
+        };
+
+        const bigModExp = (base, exp, mod) => {
+            let res = 1n;
+            base = BigInt(base) % BigInt(mod);
+            exp = BigInt(exp);
+            let m = BigInt(mod);
+            while (exp > 0n) {
+                if (exp % 2n === 1n) res = (res * base) % m;
+                base = (base * base) % m;
+                exp = exp / 2n;
+            }
+            return res;
+        };
+
+        const update = () => {
+            const p = parseInt(pInput.value);
+            const q = parseInt(qInput.value);
+            
+            if (!esPrimo(p) || !esPrimo(q)) {
+                pubKeyDiv.innerText = "Error: ¡Usa números primos!";
+                pubKeyDiv.style.color = "#ef4444";
+                privKeyDiv.innerText = "-";
+                return;
+            } else {
+                pubKeyDiv.style.color = "#0072f5";
+            }
+
+            const n = p * q;
+            const phi = (p - 1) * (q - 1);
+            
+            let e = 65537n;
+            if (BigInt(phi) <= e) e = 3n;
+            while (gcd(Number(e), phi) !== 1 && e < BigInt(phi)) {
+                e += 2n;
+            }
+
+            const d = modInverse(e, phi);
+            pubKeyDiv.innerText = `n: ${n}, e: ${e}`;
+            privKeyDiv.innerText = `${d}`;
+
+            const text = textInput.value;
+            if (!text) { output.value = ""; return; }
+
+            const encrypted = text.split('').map(char => {
+                const m = char.charCodeAt(0);
+                if (m >= n) return "!!"; 
+                return bigModExp(m, e, n).toString();
+            });
+
+            output.value = encrypted.join('-');
+        };
+
+        // --- FUNCIÓN DE COPIAR ---
+        if (btnCopy) {
+            btnCopy.addEventListener('click', () => {
+                if (!output.value || output.value.includes("!!")) return;
+
+                // Seleccionar el texto para asegurar compatibilidad
+                output.select();
+                output.setSelectionRange(0, 99999);
+
+                try {
+                    // Intento con la API moderna
+                    navigator.clipboard.writeText(output.value).then(() => {
+                        darFeedbackCopiado();
+                    }).catch(() => {
+                        // Fallback clásico si la API falla
+                        document.execCommand('copy');
+                        darFeedbackCopiado();
+                    });
+                } catch (err) {
+                    document.execCommand('copy');
+                    darFeedbackCopiado();
+                }
+            });
+        }
+
+        function darFeedbackCopiado() {
+            const originalText = btnCopy.innerText;
+            btnCopy.innerText = "Copiado!";
+            btnCopy.style.boxShadow = "0 0 15px rgba(0, 114, 245, 0.5)";
+            setTimeout(() => {
+                btnCopy.innerText = originalText;
+                btnCopy.style.boxShadow = "";
+            }, 2000);
+        }
+
+        // --- DESCIFRADO ---
+        btnDecrypt.addEventListener('click', () => {
+            const p = parseInt(pInput.value);
+            const q = parseInt(qInput.value);
+            const phi = (p - 1) * (q - 1);
+            let e = 65537n;
+            if (BigInt(phi) <= e) e = 3n;
+            while (gcd(Number(e), phi) !== 1) e += 2n;
+            const d = modInverse(e, phi);
+            const n = p * q;
+
+            if (output.value.includes("!!") || !output.value) {
+                alert("Error: Datos insuficientes o primos muy pequeños.");
+                return;
+            }
+
+            const decrypted = output.value.split('-').map(b => {
+                const m = bigModExp(b, d, n);
+                return String.fromCharCode(Number(m));
+            }).join('');
+
+            alert("Mensaje recuperado: " + decrypted);
+        });
+
+        [pInput, qInput, textInput].forEach(el => el.addEventListener('input', update));
+        update();
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initRSA);
+    } else {
+        initRSA();
+    }
+})();
+
+(function() {
+    const initSHA = () => {
+        const input = document.getElementById('sha-input');
+        const output = document.getElementById('sha-output');
+        const btnCopy = document.getElementById('sha-copy-btn');
+
+        // Función para generar el hash SHA-256
+        async function generarHash(mensaje) {
+            // Convertimos el texto en un array de bytes (Uint8Array)
+            const msgBuffer = new TextEncoder().encode(mensaje);
+
+            // Generamos el hash usando la API del navegador
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+            // Convertimos el buffer a una cadena hexadecimal
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            return hashHex;
+        }
+
+        // Evento de escritura
+        input.addEventListener('input', async () => {
+            const hash = await generarHash(input.value);
+            output.innerText = hash;
+            
+            // Efecto visual: pequeño destello al cambiar
+            output.style.color = "#fff";
+            setTimeout(() => output.style.color = "#0072f5", 100);
+        });
+
+        // Botón de Copiar
+        if (btnCopy) {
+            btnCopy.addEventListener('click', () => {
+                const textToCopy = output.innerText;
+                
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalText = btnCopy.innerText;
+                    btnCopy.innerText = "Copiado!";
+                    btnCopy.style.boxShadow = "0 0 15px rgba(0, 114, 245, 0.5)";
+                    
+                    setTimeout(() => {
+                        btnCopy.innerText = originalText;
+                        btnCopy.style.boxShadow = "";
+                    }, 2000);
+                });
+            });
+        }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSHA);
+    } else {
+        initSHA();
+    }
+})();
+
 const encryptionSection = document.querySelector('.encryption-section');
 
 const observer = new IntersectionObserver((entries) =>{
