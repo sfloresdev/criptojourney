@@ -1,4 +1,5 @@
 <?php
+include_once __DIR__ . '/app/dat/init_db.php';
 session_start();
 $msg = '';
 require __DIR__ . '/app/dat/loginController.php';
