@@ -39,7 +39,7 @@ if (!$miWiki) {
             <?= $miWiki->cuerpo_wiki ?>
 
             <nav class="wiki-footer-nav">
-                <a href="../../main.php" class="btn">Volver al Viaje</a>
+                <a href="../../main.php" class="btn">Inicio</a>
             </nav>
             
         </article>

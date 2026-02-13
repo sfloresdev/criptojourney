@@ -355,20 +355,20 @@ main {
 
 .hero-text1{
     text-align: left;
-    padding-left: 100px;
+    padding-left: clamp(1rem, 6vw, 100px);
     color: #5050508a;
 }
 
 .hero-text2{
     text-align: left;
-    padding-left: 125px;
+    padding-left: clamp(1rem, 7vw, 125px);
 }
 .hero-text-header{
     color: #505050c7;
 }
 .hero-text-body{
   opacity: 0;
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 5vw, 3rem);
   font-weight: 700;
   background: linear-gradient(90deg, #2f2f2f, #ffffff);
   -webkit-background-clip: text;
@@ -390,7 +390,7 @@ main {
 .underline {
   position: absolute;
   bottom: 0;       /* ajusta según la altura del texto */
-  left: 120px;
+  left: clamp(1rem, 8vw, 120px);
   width: 40%;
   height: 2px;
   background: linear-gradient(90deg, #333434, #dcdedd);
@@ -998,14 +998,15 @@ main {
 }
 
 #rsa-text-input{
-    width: 200px;
+    width: 100%;
+    max-width: 300px;
     height: 30px;
     background-color: #000;
     border-radius: 7px;
     color: white;
 }
 #rsa-output{
-    width: 300px;
+    width: 100%;
     background-color: #000;
     border-radius: 7px;
     color: white;
@@ -1050,7 +1051,8 @@ main {
 }
 
 #sha-input{
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     background-color: #000;
     border-radius: 7px;
     color: white;
@@ -1180,7 +1182,7 @@ main {
 }
 
 .article-header h2 {
-    font-size: var(--h2);
+    font-size: clamp(1.5rem, 4vw, var(--h2));
     font-weight: 600;
     margin: 0.5rem 0;
     padding-bottom: 0.5rem;
@@ -1189,7 +1191,7 @@ main {
 }
 
 .article-header h3 {
-    font-size: var(--h3);
+    font-size: clamp(1.2rem, 3vw, var(--h3));
     font-weight: 400;
     margin: 0.35rem 0 0.75rem;
     padding-bottom: 0.5rem;
@@ -1428,4 +1430,300 @@ main {
 .org-name a:hover {
     transform: scale(1.03);
     color: #a1a1a1;
+}
+
+/* ===================== RESPONSIVE GLOBAL ===================== */
+
+/* === TABLETS Y PANTALLAS MEDIANAS (≤768px) === */
+@media (max-width: 768px) {
+
+    main {
+        margin-top: 60px;
+        gap: 2rem;
+        padding: 0.5rem;
+    }
+
+    /* -- Hero Section -- */
+    .hero-text {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .hero-text1 {
+        padding-left: 1rem;
+        font-size: 9px;
+    }
+
+    .hero-text2 {
+        padding-left: 1rem;
+    }
+
+    .hero-text-body {
+        font-size: clamp(1.3rem, 5vw, 2rem);
+    }
+
+    .underline {
+        left: 1rem;
+        width: 60%;
+    }
+
+    .img-block:nth-child(2),
+    .img-block:nth-child(4) {
+        top: 0;
+    }
+
+    /* -- Artículos -- */
+    .articles {
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+
+    .articles article {
+        padding: 1.5rem 0.5rem;
+        max-width: 100%;
+    }
+
+    .articles article .article-header,
+    .articles article .article-summary,
+    .articles article .detailed-explanation {
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+
+    .articles article .interactive-area {
+        padding: 1rem 0;
+    }
+
+    /* -- Cifrado César -- */
+    .cesar-card {
+        padding: 1.2rem;
+        border-radius: 10px;
+    }
+
+    .cesar-controls {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0.8rem;
+    }
+
+    .letter-box {
+        min-width: 28px;
+        height: 38px;
+        font-size: 0.85rem;
+    }
+
+    .wheel-outer {
+        padding: 12px;
+    }
+
+    /* -- Enigma -- */
+    .enigma-card {
+        padding: 1.2rem;
+    }
+
+    .enigma-rotors-container {
+        gap: 12px;
+    }
+
+    .rotor-display {
+        width: 50px;
+        height: 65px;
+        font-size: 1.6rem;
+    }
+
+    .rotor-unit label {
+        font-size: 0.65rem;
+    }
+
+    /* -- RSA -- */
+    .rsa-card {
+        padding: 1.2rem;
+    }
+
+    .rsa-primes {
+        flex-direction: column;
+    }
+
+    .rsa-primes input {
+        width: 100%;
+    }
+
+    .keys-display {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    #rsa-text-input {
+        max-width: 100%;
+    }
+
+    /* -- SHA-256 -- */
+    .sha-card {
+        padding: 1.2rem;
+    }
+
+    .hash-display {
+        font-size: 0.75rem;
+        padding: 0.8rem;
+    }
+
+    #sha-input {
+        max-width: 100%;
+    }
+
+    /* -- Valoraciones -- */
+    .valoracion-form label {
+        max-width: 100%;
+    }
+
+    .valoraciones-existentes {
+        max-width: 100%;
+    }
+
+    /* -- Footer -- */
+    .footer-container {
+        gap: 1.5rem;
+        padding-inline: 1rem;
+    }
+
+    .footer-bottom {
+        margin-top: 2rem;
+    }
+
+    /* -- Logout header -- */
+    .logout {
+        right: 50px;
+        transform: translateX(35px);
+    }
+}
+
+/* === MÓVILES PEQUEÑOS (≤480px) === */
+@media (max-width: 480px) {
+
+    main {
+        margin-top: 48px;
+        padding: 0.25rem;
+    }
+
+    /* -- Hero -- */
+    .hero {
+        padding-bottom: 8vh;
+    }
+
+    .hero-container {
+        top: 40%;
+    }
+
+    .hero-text1 {
+        padding-left: 0.5rem;
+    }
+
+    .hero-text2 {
+        padding-left: 0.5rem;
+    }
+
+    .hero-text-body {
+        font-size: clamp(1.1rem, 6vw, 1.5rem);
+    }
+
+    .underline {
+        left: 0.5rem;
+        width: 70%;
+    }
+
+    .hero-images {
+        gap: 1rem;
+        margin-top: 2.5rem;
+    }
+
+    .himage {
+        width: 120px;
+    }
+
+    .hero-images .texto-imagen {
+        left: 20px;
+        font-size: 0.8rem;
+    }
+
+    /* -- Artículos -- */
+    .articles article {
+        padding: 1rem 0.25rem;
+    }
+
+    .articles article h4,
+    .articles article p {
+        font-size: 0.9rem;
+        max-width: 100%;
+    }
+
+    /* -- Cards interactivas -- */
+    .cesar-card,
+    .enigma-card,
+    .rsa-card,
+    .sha-card {
+        padding: 1rem;
+        gap: 1rem;
+        border-radius: 8px;
+    }
+
+    .cesar-controls .control-item {
+        width: 100%;
+        text-align: center;
+    }
+
+    .enigma-rotors-container {
+        gap: 8px;
+    }
+
+    .rotor-display {
+        width: 42px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+
+    .enigma-card textarea {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    .enigma-card .article-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .enigma-card .article-footer .btn {
+        width: 100%;
+    }
+
+    /* -- Footer -- */
+    .footer-container {
+        padding-inline: 0.8rem;
+        gap: 1.2rem;
+    }
+
+    .site-footer {
+        padding: 2rem 0 1.5rem;
+    }
+
+    .footer-bottom {
+        margin-top: 1.5rem;
+        font-size: 0.75rem;
+    }
+
+    /* -- Header -- */
+    #logo_header {
+        width: 120px;
+        height: auto;
+    }
+
+    .logout {
+        right: 10px;
+        transform: translateX(20px);
+    }
+
+    .logout a {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
 }

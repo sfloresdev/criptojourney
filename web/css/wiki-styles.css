@@ -55,16 +55,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 5rem; /* Separación mayor entre cabecera y contenido */
+    margin-bottom: clamp(2rem, 5vw, 5rem);
     position: relative; 
     z-index: 1;
 }
 
 .wiki-title {
-    font-size: 4rem; /* Un poco más grande para impacto */
+    font-size: clamp(1.8rem, 6vw, 4rem);
     font-weight: 700;
     margin-top: 2rem;
-    margin-bottom: 1rem; /* Separación amplia con el subtítulo */
+    margin-bottom: 1rem;
     background: linear-gradient(90deg, #2f2f2f, #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -74,7 +74,7 @@
 .underline {
   position: absolute;
   bottom: 0;       /* ajusta según la altura del texto */
-  left: 280px;
+  left: clamp(2rem, 20vw, 280px);
   width: 40%;
   height: 2px;
   background: linear-gradient(90deg, #333434, #dcdedd);
@@ -84,7 +84,7 @@
 }
 
 .wiki-subtitle {
-    font-size: var(--h3);
+    font-size: clamp(1rem, 3vw, var(--h3));
     font-weight: 400;
     margin: 0;
     padding-bottom: 1.5rem; /* Espacio para la línea de subrayado */
@@ -98,17 +98,17 @@
 
 /* Secciones de texto */
 .wiki-section {
-    padding-top: 4rem;
+    padding-top: clamp(2rem, 4vw, 4rem);
     width: 100%;
     max-width: 700px;
-    margin-bottom: 2rem; /* Más aire entre bloques de texto */
+    margin-bottom: clamp(1rem, 3vw, 2rem);
     text-align: justify;
 }
 
 /* ... mantén el resto de estilos (.wiki-quote, .wiki-formula, etc.) igual que los tenías ... */
 
 .wiki-section h2 {
-    font-size: var(--h2);
+    font-size: clamp(1.4rem, 4vw, var(--h2));
     font-weight: 600;
     color: #fff;
     margin-bottom: 1.5rem;
@@ -116,7 +116,7 @@
 }
 
 .wiki-section p {
-    font-size: 1.2rem;
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
     line-height: 1.6;
     color: #ccc;
     margin-bottom: 1.2rem;
@@ -232,7 +232,7 @@
 .underline_wikiIndex {
   position: absolute;
   bottom: 0;       /* ajusta según la altura del texto */
-  left: 100px;
+  left: clamp(1rem, 10vw, 100px);
   width: 40%;
   height: 2px;
   background: linear-gradient(90deg, #333434, #dcdedd);
@@ -320,5 +320,206 @@
     .wiki-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         padding: 0 1.5rem;
+    }
+}
+
+/* ===================== RESPONSIVE WIKI ===================== */
+
+/* === TABLETS (≤768px) === */
+@media (max-width: 768px) {
+
+    .wiki-wrapper {
+        margin-top: 60px;
+        padding: 2rem 1rem;
+        gap: 2rem;
+    }
+
+    .wiki-container {
+        padding: 1.5rem 0;
+    }
+
+    .wiki-title {
+        margin-top: 1rem;
+    }
+
+    .wiki-subtitle {
+        padding-bottom: 1rem;
+        max-width: 100%;
+    }
+
+    .wiki-section {
+        max-width: 100%;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .wiki-section h2 {
+        margin-bottom: 1rem;
+    }
+
+    .wiki-quote {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .wiki-formula {
+        padding: 1rem;
+        margin: 1.5rem 0;
+        font-size: 0.9rem;
+    }
+
+    .wiki-info-box {
+        padding: 1rem;
+    }
+
+    .wiki-info-box h3 {
+        font-size: clamp(1.1rem, 3vw, var(--h3));
+    }
+
+    .wiki-list {
+        padding-left: 1rem;
+    }
+
+    .wiki-footer-nav {
+        margin-top: 2rem;
+    }
+
+    .wiki-external-container {
+        margin: 0rem auto 2rem auto;
+        padding: 0 0.5rem;
+    }
+
+    /* Tarjetas de la biblioteca */
+    .wiki-grid {
+        gap: 1.5rem;
+        margin: 2rem auto;
+    }
+
+    .wiki-card-inner {
+        padding: 1.8rem;
+        border-radius: 16px;
+    }
+
+    .wiki-card-title {
+        font-size: clamp(1.1rem, 3vw, var(--h4));
+    }
+
+    .wiki-card-body p {
+        font-size: var(--small);
+        margin-bottom: 1.5rem;
+    }
+
+    /* Header de la biblioteca */
+    .wiki-header-main .hero-text-body {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+    }
+}
+
+/* === MÓVILES PEQUEÑOS (≤480px) === */
+@media (max-width: 480px) {
+
+    .wiki-wrapper {
+        margin-top: 48px;
+        padding: 1.5rem 0.5rem;
+        gap: 1.5rem;
+    }
+
+    .wiki-container {
+        padding: 1rem 0;
+    }
+
+    .wiki-title {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .wiki-subtitle {
+        font-size: clamp(0.85rem, 3vw, 1rem);
+        padding-bottom: 0.8rem;
+    }
+
+    .wiki-section {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+    }
+
+    .wiki-section p {
+        font-size: 0.9rem;
+    }
+
+    .wiki-quote {
+        padding: 0.8rem;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+    }
+
+    .wiki-formula {
+        padding: 0.8rem;
+        margin: 1rem 0;
+        font-size: 0.8rem;
+        word-break: break-all;
+    }
+
+    .wiki-info-box {
+        padding: 0.8rem;
+    }
+
+    .wiki-info-box h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .wiki-info-box p {
+        font-size: 0.85rem;
+    }
+
+    .wiki-list li {
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .wiki-footer-nav {
+        margin-top: 1.5rem;
+    }
+
+    .wiki-external-container {
+        margin: 0 auto 1.5rem auto;
+    }
+
+    .external-text {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+
+    .wiki-external-box .btn {
+        padding: 0.6rem 1.5rem;
+        font-size: var(--small);
+    }
+
+    /* Tarjetas de la biblioteca */
+    .wiki-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin: 1.5rem auto;
+        padding: 0 0.8rem;
+    }
+
+    .wiki-card-inner {
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .wiki-card-actions .btn {
+        padding: 0.7rem;
+    }
+
+    /* Header de la biblioteca */
+    .wiki-header-main .hero-text-body {
+        font-size: clamp(1.2rem, 6vw, 2rem);
+    }
+
+    .underline_wikiIndex {
+        left: 0.5rem;
+        width: 60%;
     }
 }
